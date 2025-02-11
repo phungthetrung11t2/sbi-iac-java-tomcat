@@ -1,0 +1,13 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      java: openjdk11
+  build:
+    commands:
+      - mvn package clean
+      - cp target/*.war /opt/tomcat/updated/webapps/
+      - sudo systemctl restart tomcat
+artifacts:
+  files:
+    - target/*.war
