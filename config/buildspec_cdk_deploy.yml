@@ -1,0 +1,29 @@
+# version: 0.2
+
+# phases:
+#     install:
+#       commands:
+#         - yum install -y jq
+#     build:
+#       commands:
+#         - echo Deploying CloudFormation stack
+#         - echo "Reading manifest.json to determine deployment order"
+#         - stacks=$(jq -r '.artifacts | to_entries[] | select(.value.type == "aws:cloudformation:stack") | .key' cdk.out/manifest.json)
+#         - for stack in $stacks; do
+#             template="cdk.out/${stack}.template.json";
+#             echo "Deploying $stack from $template";
+#             aws cloudformation deploy --template-file $template --stack-name $stack --capabilities CAPABILITY_NAMED_IAM;
+#           done
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.9
+      nodejs: 22
+    commands:
+      - npm install -g aws-cdk
+      - pip install -r requirements.txt
+  build:
+    commands:
+      - cdk deploy --context env=$ENVIRONMENT --all --require-approval never

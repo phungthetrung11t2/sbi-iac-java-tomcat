@@ -1,0 +1,35 @@
+dev:
+  repository_name: "sbi_iac_java_tomcat"
+  branch_name: "dev"
+  stack_name: "PipelineStack-dev"
+  account_id: "123456778989"
+  region: "ap-southeast-1"
+  environment_name: "dev"
+  vpc_id: "vpc-1234567789892222"
+  sg_id: "sg-1234567789892222"
+  public_subnet_ids: ["subnet-1234567789892222","subnet-1234567789892222"]
+  iam_role_arn: "arn:aws:iam::123456778989:role/Allow-SSM-EC2"
+  instance_type: "t3.small"
+  min_instance_count: 1
+  max_instance_count: 2
+
+test:
+  repository_name: "sbi_iac_java_tomcat"
+  branch_name: "test"
+  environment_name: "test"
+  stack_name: "PipelineStack-test"
+  account_id: "123456778989"
+  region: "ap-southeast-1"
+  vpc_id: "vpc-1234567789892222"
+  sg_id: "sg-1234567789892222"
+  instance_type: "t3.small"
+  public_subnet_ids: ["subnet-1234567789892222","subnet-1234567789892222"]
+  iam_role_arn: "arn:aws:iam::123456778989:role/Allow-SSM-EC2"
+  min_instance_count: 2
+  max_instance_count: 4
+
+prod:
+  environment_name: "prod"
+  instance_type: "t3.medium"
+  min_instance_count: 3
+  max_instance_count: 6
